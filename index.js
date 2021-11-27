@@ -19,9 +19,10 @@ app.use(function (req, res, next) {
 
 const port = process.env.PORT | 8900;
 
-const io = new Server(httpServer, {
+const io = require("socket.io")(httpServer, {
   cors: {
     origin: "*",
+    methods: ["GET", "POST"],
   },
 });
 
