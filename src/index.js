@@ -2,24 +2,19 @@ const express = require("express");
 const app = express();
 const { createServer } = require("http");
 const { Server } = require("socket.io");
-const cors = require("cors");
 
 const dotenv = require("dotenv");
 dotenv.config();
 
-app.use(cors());
-
 const httpServer = createServer(app);
 
-const port = process.env.PORT | 4444;
+const port = process.env.PORT | 8900;
 
 const io = new Server(httpServer, {
   cors: {
     origin: "*",
   },
 });
-
-io.use(cors());
 
 let users = [];
 
