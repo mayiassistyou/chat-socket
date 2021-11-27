@@ -9,17 +9,10 @@ dotenv.config();
 const httpServer = createServer(app);
 
 app.use(function (req, res, next) {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "http://" + req.headers.host + ":8900"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-  res.setHeader(
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
     "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type"
+    "Origin, X-Requested-With, Content-Type, Accept"
   );
   next();
 });
