@@ -1,10 +1,15 @@
+const express = require("express");
+const app = express();
 const { createServer } = require("http");
 const { Server } = require("socket.io");
+const cors = require("cors");
 
 const dotenv = require("dotenv");
 dotenv.config();
 
-const httpServer = createServer();
+app.use(cors);
+
+const httpServer = createServer(app);
 
 const port = process.env.PORT | 4444;
 
@@ -54,6 +59,7 @@ io.on("connection", (socket) => {
     socket.emit("getUsers", users);
   });
 });
+
 httpServer.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
