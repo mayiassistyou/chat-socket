@@ -7,7 +7,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
 
-app.use(cors);
+app.use(cors());
 
 const httpServer = createServer(app);
 
