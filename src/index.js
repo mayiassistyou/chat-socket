@@ -1,4 +1,9 @@
-const io = require("socket.io")(4444, {
+const dotenv = require("dotenv");
+dotenv.config();
+
+const port = process.env.PORT | 4444;
+
+const io = require("socket.io")(port, {
   cors: {
     origin: "*",
   },
