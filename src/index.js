@@ -19,6 +19,8 @@ const io = new Server(httpServer, {
   },
 });
 
+io.use(cors());
+
 let users = [];
 
 const addUser = (userId, socketId) => {
