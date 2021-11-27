@@ -1,14 +1,16 @@
+const { createServer } = require("http");
+const { Server } = require("socket.io");
+
 const dotenv = require("dotenv");
 dotenv.config();
 
+const httpServer = createServer();
+
 const port = process.env.PORT | 4444;
 
-const io = require("socket.io")(port, {
+const io = new Server(httpServer, {
   cors: {
-    origin: [
-      "http://localhost:3000",
-      "https://chat-app-client-delta.vercel.app/",
-    ],
+    origin: "*",
   },
 });
 
@@ -51,4 +53,7 @@ io.on("connection", (socket) => {
     removeUser(socket.id);
     socket.emit("getUsers", users);
   });
+});
+httpServer.listen(port, () => {
+  console.log(`App listening on port ${port}`);
 });
