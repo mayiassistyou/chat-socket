@@ -6,6 +6,9 @@ const port = process.env.PORT | 4444;
 const io = require("socket.io")(port, {
   cors: {
     origin: "*",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],
+    credentials: true,
   },
 });
 
